@@ -1,0 +1,53 @@
+.Nav {
+  background-color: #202020;
+
+  padding: 7px 20px;
+}
+.Nav-Logo {
+  width: 120px;
+}
+.Mobile-Nav {
+  display: none;
+}
+.Main-Nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.Middle-Nav {
+  display: flex;
+  gap: 15px;
+}
+.link {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 15px;
+  cursor: pointer;
+}
+.Nav-btn {
+  background-color: #6366f1;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+@media screen and (max-width: 768px) {
+  .Mobile-Nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .Main-Nav {
+    display: none;
+  }
+  .Middle-Nav {
+    gap: 30px;
+  }
+}
+
+.Icon {
+  color: #ffffff;
+  font-size: 25px;
+}
