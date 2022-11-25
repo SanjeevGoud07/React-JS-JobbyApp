@@ -31,9 +31,12 @@
 @media screen and (max-width: 768px) {
   .Box {
     width: 100%;
-    margin: 30px;
+    margin: 0px 20px;
   }
   .Home-Con {
     background-image: url('https://assets.ccbp.in/frontend/react-js/home-sm-bg.png');
+    align-items: flex-start;
+    padding-bottom: 60px;
+    height: 120vh;
   }
 }
