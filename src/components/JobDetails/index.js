@@ -47,7 +47,7 @@ class JobDetails extends Component {
     this.setState({Aid: id})
     const Url = `https://apis.ccbp.in/jobs/${id}`
     const options = {
-      headers: {
+      heades: {
         Authorization: `Bearer ${Token}`,
       },
       method: 'GET',
@@ -103,18 +103,21 @@ class JobDetails extends Component {
   }
 
   renderFailureView = () => (
-    <div className="Failure">
-      <img
-        src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
-        alt="failure view"
-      />
-      <h1 className="ParagraphFail">Oops! Something Went Wrong</h1>
-      <p className="ParagraphFail2">
-        We cannot seem to find the page you are looking for.
-      </p>
-      <button type="button" className="Nav-btn" onClick={this.getJob}>
-        Retry
-      </button>
+    <div className="Failed2">
+      <div className="Failure2">
+        <img
+          src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
+          className="failImg"
+          alt="failure view"
+        />
+        <h1 className="ParagraphFail">Oops! Something Went Wrong</h1>
+        <p className="ParagraphFail2">
+          We cannot seem to find the page you are looking for.
+        </p>
+        <button type="button" className="Nav-btn" onClick={this.getJob}>
+          Retry
+        </button>
+      </div>
     </div>
   )
 

@@ -7,14 +7,22 @@
   align-items: center;
   justify-content: center;
 }
-.Failure {
+.Failure2 {
   display: flex;
   flex-direction: column;
-  background-color: #121212;
-  min-height: 100vh;
-  width: 100%;
+
+  width: 70%;
   align-items: center;
   justify-content: center;
+  text-align: center;
+}
+.Failed2 {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #121212;
 }
 .SimBox {
   color: #ffffff;
@@ -34,6 +42,9 @@
   gap: 20px;
   justify-content: flex-start;
   flex-wrap: wrap;
+}
+.failImg {
+  width: 70%;
 }
 .Job-Box2 {
   background-color: #202020;

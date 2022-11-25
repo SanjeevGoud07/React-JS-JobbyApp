@@ -183,31 +183,37 @@ class Jobs extends Component {
   )
 
   renderFailureView = () => (
-    <div className="Failure">
-      <img
-        src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
-        alt="failure view"
-      />
-      <h1 className="ParagraphFail">Oops! Something Went Wrong</h1>
-      <p className="ParagraphFail2">
-        We cannot seem to find the page you are looking for
-      </p>
-      <button type="button" className="Nav-btn" onClick={this.getJobs}>
-        Retry
-      </button>
+    <div className="Failed">
+      <div className="Failure">
+        <img
+          className="failImg"
+          src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
+          alt="failure view"
+        />
+        <h1 className="ParagraphFail">Oops! Something Went Wrong</h1>
+        <p className="ParagraphFail2">
+          We cannot seem to find the page you are looking for
+        </p>
+        <button type="button" className="Nav-btn" onClick={this.getJobs}>
+          Retry
+        </button>
+      </div>
     </div>
   )
 
   renderNoJobsView = () => (
-    <div className="Failure">
-      <img
-        src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png"
-        alt="no jobs"
-      />
-      <h1 className="ParagraphFail">No Jobs Found</h1>
-      <p className="ParagraphFail2">
-        We could not find any jobs. Try other filters.
-      </p>
+    <div className="Failed">
+      <div className="Failure">
+        <img
+          src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png"
+          className="failImg"
+          alt="no jobs"
+        />
+        <h1 className="ParagraphFail">No Jobs Found</h1>
+        <p className="ParagraphFail2">
+          We could not find any jobs. Try other filters.
+        </p>
+      </div>
     </div>
   )
 

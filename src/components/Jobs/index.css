@@ -110,6 +110,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
+}
+.Failed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+}
+.failImg {
+  width: 70%;
 }
 .ParagraphFail {
   font-size: 35px;
