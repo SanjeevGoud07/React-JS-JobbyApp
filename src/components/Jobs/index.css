@@ -5,13 +5,68 @@
   color: #ffffff;
   display: flex;
   align-items: flex-start;
-  gap: 30px;
+  gap: 10px;
   /* justify-content: space-evenly; */
   /* flex-direction: column; */
 }
+
 .LeftSide {
   width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .RightSide {
   width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.JobCardList {
+  list-style-type: none;
+  padding-left: 0px;
+}
+@media screen and (max-width: 768px) {
+  .Jobs-Con {
+    flex-direction: column;
+    background-color: #121212;
+    align-items: center;
+    justify-content: center;
+  }
+  .RightSide {
+    width: 90%;
+  }
+  .LeftSide {
+    width: 90%;
+  }
+}
+.SearchBtn {
+  background-color: #202020;
+  border: none;
+  padding: 10px;
+  border-radius: 0px 10px 10px 0px;
+  cursor: pointer;
+}
+.SearchBar {
+  border: 1px solid #202020;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  align-self: flex-start;
+  margin-top: 20px;
+  width: 70%;
+}
+.SearchIn {
+  background: none;
+  border: none;
+  width: 100%;
+  font-size: 20px;
+  padding: 10px;
+  outline: none;
+  color: #ffffff;
+}
+.SearchIcon {
+  font-size: 20px;
+  color: #ffffff;
 }

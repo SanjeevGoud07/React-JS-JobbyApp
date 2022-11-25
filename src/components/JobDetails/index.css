@@ -1,0 +1,160 @@
+.details-Con {
+  display: flex;
+  flex-direction: column;
+  background-color: #121212;
+  min-height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.SimBox {
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  width: 80%;
+}
+.Similar-List {
+  list-style-type: none;
+  padding: 0%;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 20px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.Job-Box2 {
+  background-color: #202020;
+  width: 80%;
+  color: #ffffff;
+  margin: 20px;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.comp-logo {
+  width: 80px;
+  height: 80px;
+}
+.compLogoBox {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.star {
+  color: #fbbf24;
+  font-size: 20px;
+}
+.type-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin: -10px 0px 0px 0px;
+}
+.ratingComp {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: -20px 0px 0px 0px;
+}
+.Row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.RowRow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.detailsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.Paragraph2 {
+  font-weight: 600;
+}
+.Paragraph3 {
+  font-weight: 600;
+  font-size: 23px;
+}
+.line {
+  border: 1px solid #6366f1;
+  /* background-color: #6366f1; */
+  /* height: 1px; */
+}
+.link {
+  text-decoration: none;
+  cursor: pointer;
+}
+.descRow {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.site {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #6366f1;
+}
+
+.ListBox {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.list-item {
+  width: 30%;
+  margin: 15px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+}
+@media screen and (max-width: 768px) {
+  .list-item {
+    width: 45%;
+    margin: 15px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+  .LifeBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+}
+.skillImg {
+  width: 50px;
+}
+.Paragraph4 {
+  font-weight: 500;
+  font-size: 18px;
+}
+.LifeBox {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.LifeImg {
+  width: 100%;
+}

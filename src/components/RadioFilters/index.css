@@ -1,0 +1,23 @@
+* {
+  color: #ffffff;
+}
+.line2 {
+  border: 1px solid #6366f1;
+  /* background-color: #6366f1; */
+  /* height: 1px; */
+  width: 100%;
+}
+.Paragraph5 {
+  font-weight: 600;
+  font-size: 23px;
+}
+.CBox {
+  margin: 10px;
+}
+.FilterCon {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 70%;
+}
