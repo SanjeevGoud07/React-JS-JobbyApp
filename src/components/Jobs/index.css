@@ -25,6 +25,25 @@
 .JobCardList {
   list-style-type: none;
   padding-left: 0px;
+  width: 100%;
+  align-self: flex-start;
+}
+.SearchBar1 {
+  align-self: center;
+  margin: 0px;
+  display: none;
+}
+
+.SearchBar {
+  border: 1px solid #202020;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  align-self: flex-start;
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 70%;
 }
 @media screen and (max-width: 768px) {
   .Jobs-Con {
@@ -32,6 +51,22 @@
     background-color: #121212;
     align-items: center;
     justify-content: center;
+  }
+  .SearchBar {
+    align-self: center;
+    margin: 0px;
+    display: none;
+  }
+  .SearchBar1 {
+    border: 1px solid #202020;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    align-self: center;
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 90%;
   }
   .RightSide {
     width: 90%;
@@ -47,16 +82,7 @@
   border-radius: 0px 10px 10px 0px;
   cursor: pointer;
 }
-.SearchBar {
-  border: 1px solid #202020;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 10px;
-  align-self: flex-start;
-  margin-top: 20px;
-  width: 70%;
-}
+
 .SearchIn {
   background: none;
   border: none;
@@ -69,4 +95,26 @@
 .SearchIcon {
   font-size: 20px;
   color: #ffffff;
+}
+.FilterContain {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 10px;
+  justify-content: flex-start;
+  width: 80%;
+}
+.Failure {
+  display: flex;
+  width: 90%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.ParagraphFail {
+  font-size: 35px;
+}
+.ParagraphFail2 {
+  margin-top: -5px;
+  font-size: 20px;
 }

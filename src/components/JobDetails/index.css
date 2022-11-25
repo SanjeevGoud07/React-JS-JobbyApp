@@ -7,6 +7,15 @@
   align-items: center;
   justify-content: center;
 }
+.Failure {
+  display: flex;
+  flex-direction: column;
+  background-color: #121212;
+  min-height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
 .SimBox {
   color: #ffffff;
   display: flex;

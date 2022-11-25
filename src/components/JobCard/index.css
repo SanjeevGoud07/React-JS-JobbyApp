@@ -3,6 +3,7 @@
   width: 90%;
   margin: 20px;
   border-radius: 10px;
+  /* align-self: flex-start; */
   padding: 20px;
 }
 
@@ -59,4 +60,9 @@
 .link {
   text-decoration: none;
   cursor: pointer;
+}
+@media screen and (max-width: 768px) {
+  .Job-Box {
+    width: 95%;
+  }
 }

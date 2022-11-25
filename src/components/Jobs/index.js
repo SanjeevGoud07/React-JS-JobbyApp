@@ -16,6 +16,7 @@ const apiStatusConstants = {
   success: 'SUCCESS',
   failure: 'FAILURE',
   inProgress: 'IN_PROGRESS',
+  noJobs: 'NOJOBS',
 }
 
 const employmentTypesList = [
@@ -125,6 +126,7 @@ class Jobs extends Component {
     const response = await fetch(Url, options)
     const data = await response.json()
     console.log(response)
+
     // console.log(data)
     if (response.ok) {
       const formattedData = data.jobs.map(E => ({
@@ -145,6 +147,10 @@ class Jobs extends Component {
     }
     if (response.status === 400) {
       this.setState({apiStatus: apiStatusConstants.failure})
+    }
+    if (data.jobs.length === 0) {
+      console.log('noJobs')
+      this.setState({apiStatus: apiStatusConstants.noJobs})
     }
   }
 
@@ -189,13 +195,85 @@ class Jobs extends Component {
     this.setState({pack: packs}, this.getJobs)
   }
 
-  render() {
+  renderSuccessView = () => {
     const {jobsList, searchInput} = this.state
+    return (
+      <ul className="JobCardList">
+        {jobsList.map(E => (
+          <JobCard job={E} key={E.id} />
+        ))}
+      </ul>
+    )
+  }
+
+  renderFailureView = () => (
+    <div className="Failure">
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
+        alt="failureview"
+      />
+      <h1 className="ParagraphFail">Oopos! Something Went Wrong</h1>
+      <p className="ParagraphFail2">
+        We cannot seem to find the page you are looking for.
+      </p>
+      <button type="button" className="Nav-btn">
+        Retry
+      </button>
+    </div>
+  )
+
+  renderNoJobsView = () => (
+    <div className="Failure">
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png"
+        alt="no jobs"
+      />
+      <h1 className="ParagraphFail">No Jobs Found</h1>
+      <p className="ParagraphFail2">
+        We could not find any jobs. Try other filters.
+      </p>
+    </div>
+  )
+
+  renderSwitch = () => {
+    const {apiStatus} = this.state
+    switch (apiStatus) {
+      case apiStatusConstants.success:
+        return this.renderSuccessView()
+      case apiStatusConstants.failure:
+        return this.renderFailureView()
+      case apiStatusConstants.noJobs:
+        return this.renderNoJobsView()
+      default:
+        return null
+    }
+  }
+
+  render() {
+    const {jobsList, searchInput, apiStatus} = this.state
     return (
       <div className="Jobs-Con">
         <div className="LeftSide">
+          <div className="SearchBar1">
+            <input
+              type="search"
+              placeholder="Search"
+              className="SearchIn"
+              value={searchInput}
+              onChange={this.onchangeSearch}
+              onKeyDown={this.onKeyDown}
+            />
+            <button
+              type="button"
+              testid="search"
+              className="SearchBtn"
+              onClick={this.onClickSearch}
+            >
+              <BsSearch className="SearchIcon" />
+            </button>
+          </div>
           <GetProfile />
-          <div className="FilterCon">
+          <div className="FilterContain">
             <hr className="line2" />
             <p className="Paragraph5">Type of Employment</p>
             <div className="Checks">
@@ -239,11 +317,7 @@ class Jobs extends Component {
               <BsSearch className="SearchIcon" />
             </button>
           </div>
-          <ul className="JobCardList">
-            {jobsList.map(E => (
-              <JobCard job={E} key={E.id} />
-            ))}
-          </ul>
+          {this.renderSwitch()}
         </div>
       </div>
     )

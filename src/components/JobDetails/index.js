@@ -11,8 +11,23 @@ import {Component} from 'react'
 
 import SimilarJobs from '../SimilarJobs'
 
+const apiStatusConstants = {
+  initial: 'INITIAL',
+  success: 'SUCCESS',
+  failure: 'FAILURE',
+  inProgress: 'IN_PROGRESS',
+  noJobs: 'NOJOBS',
+}
+
 class JobDetails extends Component {
-  state = {List: [], Aid: '', skills: [], Life: [], SimList: []}
+  state = {
+    List: [],
+    Aid: '',
+    skills: [],
+    Life: [],
+    SimList: [],
+    apiStatus: '',
+  }
 
   componentDidMount() {
     this.getJob()
@@ -29,16 +44,16 @@ class JobDetails extends Component {
     this.setState({Aid: id})
     const Url = `https://apis.ccbp.in/jobs/${id}`
     const options = {
-      headers: {
+      header: {
         Authorization: `Bearer ${Token}`,
       },
       method: 'GET',
     }
     const response = await fetch(Url, options)
-    // console.log(response)
+    console.log(response)
     const data = await response.json()
     console.log(data)
-    if (response.ok) {
+    if (response.ok === true) {
       const {job_details, similar_jobs} = data
       console.log(job_details)
       const jobDetails = {
@@ -76,11 +91,31 @@ class JobDetails extends Component {
         Life: jobDetails.life,
         skills: jobDetails.skills,
         SimList: similarJobs,
+        apiStatus: apiStatusConstants.success,
       })
+    }
+    if (response.status === 400) {
+      this.setState({apiStatus: apiStatusConstants.failure})
     }
   }
 
-  render() {
+  renderFailureView = () => (
+    <div className="Failure">
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
+        alt="failureview"
+      />
+      <h1 className="ParagraphFail">Oopos! Something Went Wrong</h1>
+      <p className="ParagraphFail2">
+        We cannot seem to find the page you are looking for.
+      </p>
+      <button type="button" className="Nav-btn">
+        Retry
+      </button>
+    </div>
+  )
+
+  renderSuccessView = () => {
     const {Aid, List, skills, Life, SimList} = this.state
     return (
       <div className="details-Con">
@@ -148,6 +183,22 @@ class JobDetails extends Component {
         </div>
       </div>
     )
+  }
+
+  renderSwitch = () => {
+    const {apiStatus} = this.state
+    switch (apiStatus) {
+      case apiStatusConstants.success:
+        return this.renderSuccessView()
+      case apiStatusConstants.failure:
+        return this.renderFailureView()
+      default:
+        return null
+    }
+  }
+
+  render() {
+    return this.renderSwitch()
   }
 }
 
