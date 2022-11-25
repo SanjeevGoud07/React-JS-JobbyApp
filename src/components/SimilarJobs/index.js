@@ -17,7 +17,11 @@ const SimilarJobs = props => {
   return (
     <li className="similar-card">
       <div className="compLogoBox">
-        <img src={companyLogoUrl} alt="job" className="comp-logo" />
+        <img
+          src={companyLogoUrl}
+          alt="similar job company logo"
+          className="comp-logo"
+        />
         <div className="type-flex">
           <h1 className="compTitle2">{title}</h1>
           <div className="ratingComp Comp">
@@ -27,7 +31,7 @@ const SimilarJobs = props => {
         </div>
       </div>
 
-      <p className="Paragraph3">Description</p>
+      <h1 className="Paragraph3">Description</h1>
       <p className="Paragraph">{jobDescription}</p>
       <div className="detailsRow">
         <div className="RowRow">

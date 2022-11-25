@@ -96,6 +96,9 @@ class Login extends Component {
             )}
           </form>
         </div>
+        <p className="Use">Use</p>
+        <p className="Use">Username: david</p>
+        <p className="Use">Password: the_miller@23</p>
       </div>
     )
   }

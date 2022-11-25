@@ -5,6 +5,7 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import {BsSearch} from 'react-icons/bs'
 import {v4 as uuidv4} from 'uuid'
+import Loader from 'react-loader-spinner'
 
 import GetProfile from '../GetProfile'
 import JobCard from '../JobCard'
@@ -73,50 +74,19 @@ class Jobs extends Component {
     this.getJobs()
   }
 
-  getJobs2 = async () => {
-    const {searchInput} = this.state
-    const Token = Cookies.get('jwt_token')
-    const Url = `https://apis.ccbp.in/jobs`
-    const options = {
-      headers: {
-        Authorization: `Bearer ${Token}`,
-      },
-      method: 'GET',
-    }
-    const response = await fetch(Url, options)
-    const data = await response.json()
-    console.log(response)
-    // console.log(data)
-    if (response.ok) {
-      const formattedData = data.jobs.map(E => ({
-        companyLogoUrl: E.company_logo_url,
-        employmentType: E.employment_type,
-        id: E.id,
-        jobDescription: E.job_description,
-        location: E.location,
-        packagePerAnnum: E.package_per_annum,
-        rating: E.rating,
-        title: E.title,
-      }))
-      console.log(formattedData)
-      this.setState({
-        jobsList: formattedData,
-        apiStatus: apiStatusConstants.success,
-      })
-    }
-    if (response.status === 400) {
-      this.setState({apiStatus: apiStatusConstants.failure})
-    }
-  }
-
   getJobs = async () => {
+    this.setState({apiStatus: apiStatusConstants.inProgress})
     const {searchInput, EList, pack} = this.state
     const Listdata = [EList.map(E => [E.data.employmentTypeId])]
     const text = Listdata.join(',')
-
+    const spell = searchInput.toLowerCase()
     console.log(text)
     const Token = Cookies.get('jwt_token')
-    const Url = `https://apis.ccbp.in/jobs?employment_type=${text}&minimum_package=${pack}&search=${searchInput}`
+    const search = `search=${spell}`
+    const minimumPackage = `minimum_package=${pack}`
+    const employmentType = `employment_type=${text}`
+    const Url = `https://apis.ccbp.in/jobs?${employmentType}&${minimumPackage}&${search}`
+    // const Url = `https://apis.ccbp.in/jobs?employment_type=${text}&minimum_package=${pack}&search=${searchInput}`
     const options = {
       headers: {
         Authorization: `Bearer ${Token}`,
@@ -156,7 +126,7 @@ class Jobs extends Component {
 
   onchangeSearch = e => {
     const spell = e.target.value
-    this.setState({searchInput: spell.toLowerCase()})
+    this.setState({searchInput: spell})
   }
 
   onKeyDown = e => {
@@ -206,17 +176,23 @@ class Jobs extends Component {
     )
   }
 
+  renderLoading = () => (
+    <div className="Profile2" testid="loader">
+      <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
+    </div>
+  )
+
   renderFailureView = () => (
     <div className="Failure">
       <img
         src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
-        alt="failureview"
+        alt="failure view"
       />
-      <h1 className="ParagraphFail">Oopos! Something Went Wrong</h1>
+      <h1 className="ParagraphFail">Oops! Something Went Wrong</h1>
       <p className="ParagraphFail2">
-        We cannot seem to find the page you are looking for.
+        We cannot seem to find the page you are looking for
       </p>
-      <button type="button" className="Nav-btn">
+      <button type="button" className="Nav-btn" onClick={this.getJobs}>
         Retry
       </button>
     </div>
@@ -244,6 +220,8 @@ class Jobs extends Component {
         return this.renderFailureView()
       case apiStatusConstants.noJobs:
         return this.renderNoJobsView()
+      case apiStatusConstants.inProgress:
+        return this.renderLoading()
       default:
         return null
     }
@@ -265,7 +243,7 @@ class Jobs extends Component {
             />
             <button
               type="button"
-              testid="search"
+              testid="searchButton"
               className="SearchBtn"
               onClick={this.onClickSearch}
             >
@@ -275,7 +253,7 @@ class Jobs extends Component {
           <GetProfile />
           <div className="FilterContain">
             <hr className="line2" />
-            <p className="Paragraph5">Type of Employment</p>
+            <h1 className="Paragraph5">Type of Employment</h1>
             <div className="Checks">
               {employmentTypesList.map(E => (
                 <CheckFilters
@@ -286,7 +264,7 @@ class Jobs extends Component {
               ))}
             </div>
             <hr className="line2" />
-            <p className="Paragraph5">Salary Range</p>
+            <h1 className="Paragraph5">Salary Range</h1>
             <div className="Checks">
               {salaryRangesList.map(E => (
                 <RadioFilters
@@ -310,7 +288,7 @@ class Jobs extends Component {
             />
             <button
               type="button"
-              testid="search"
+              testid="searchButton"
               className="SearchBtn"
               onClick={this.onClickSearch}
             >

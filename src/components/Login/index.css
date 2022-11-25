@@ -6,6 +6,7 @@
   color: #ffffff;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -19,6 +20,9 @@
   width: 400px;
   gap: 20px;
   flex-direction: column;
+}
+.Use {
+  margin-bottom: -15px;
 }
 .Logo {
   width: 60%;

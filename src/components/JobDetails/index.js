@@ -1,9 +1,11 @@
+/* eslint-disable react/no-unknown-property */
 /* eslint-disable camelcase */
 /* eslint-disable react/no-unused-state */
 import './index.css'
 import {AiFillStar} from 'react-icons/ai'
 import {FaSuitcase, FaMapMarkerAlt} from 'react-icons/fa'
 import {RiShareBoxFill} from 'react-icons/ri'
+import Loader from 'react-loader-spinner'
 
 import Cookies from 'js-cookie'
 
@@ -34,6 +36,7 @@ class JobDetails extends Component {
   }
 
   getJob = async () => {
+    this.setState({apiStatus: apiStatusConstants.inProgress})
     const Token = Cookies.get('jwt_token')
     const {match} = this.props
     // console.log(match)
@@ -103,13 +106,13 @@ class JobDetails extends Component {
     <div className="Failure">
       <img
         src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
-        alt="failureview"
+        alt="failure view"
       />
-      <h1 className="ParagraphFail">Oopos! Something Went Wrong</h1>
+      <h1 className="ParagraphFail">Oops! Something Went Wrong</h1>
       <p className="ParagraphFail2">
         We cannot seem to find the page you are looking for.
       </p>
-      <button type="button" className="Nav-btn">
+      <button type="button" className="Nav-btn" onClick={this.getJob}>
         Retry
       </button>
     </div>
@@ -118,10 +121,14 @@ class JobDetails extends Component {
   renderSuccessView = () => {
     const {Aid, List, skills, Life, SimList} = this.state
     return (
-      <div className="details-Con">
+      <div className="details-Con" testid="loader">
         <div className="Job-Box2">
           <div className="compLogoBox">
-            <img src={List.logo} alt="job" className="comp-logo" />
+            <img
+              src={List.logo}
+              alt="job details company logo"
+              className="comp-logo"
+            />
             <div className="type-flex">
               <h1 className="compTitle">{List.title}</h1>
               <div className="ratingComp Comp">
@@ -148,18 +155,18 @@ class JobDetails extends Component {
           </div>
           <hr className="line" />
           <div className="descRow">
-            <p className="Paragraph3">Description</p>
+            <h1 className="Paragraph3">Description</h1>
 
             <a href={List.website} className="site">
               Visit <RiShareBoxFill className="smallIcon" />
             </a>
           </div>
           <p className="Paragraph">{List.desc}</p>
-          <p className="Paragraph3">Skills</p>
+          <h1 className="Paragraph3">Skills</h1>
 
           <ul className="ListBox">
             {skills.map(Each => (
-              <li className="list-item">
+              <li className="list-item" key={Each.name}>
                 <img className="skillImg" src={Each.imageUrl} alt={Each.name} />
                 <p className="Paragraph4">{Each.name}</p>
               </li>
@@ -167,10 +174,10 @@ class JobDetails extends Component {
           </ul>
           <div className="LifeBox">
             <div className="LeftLife">
-              <p className="Paragraph3">Life at Company</p>
+              <h1 className="Paragraph3">Life at Company</h1>
               <p className="Paragraph">{Life.lifeDesc}</p>
             </div>
-            <img src={Life.image} alt={List.title} className="LifeImg" />
+            <img src={Life.image} alt="life at company" className="LifeImg" />
           </div>
         </div>
         <div className="SimBox">
@@ -185,6 +192,12 @@ class JobDetails extends Component {
     )
   }
 
+  renderLoading = () => (
+    <div className="Profile2" testid="loader">
+      <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
+    </div>
+  )
+
   renderSwitch = () => {
     const {apiStatus} = this.state
     switch (apiStatus) {
@@ -192,6 +205,8 @@ class JobDetails extends Component {
         return this.renderSuccessView()
       case apiStatusConstants.failure:
         return this.renderFailureView()
+      case apiStatusConstants.inProgress:
+        return this.renderLoading()
       default:
         return null
     }

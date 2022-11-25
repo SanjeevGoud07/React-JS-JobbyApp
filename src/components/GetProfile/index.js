@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import './index.css'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
@@ -60,7 +61,7 @@ class GetProfile extends Component {
   }
 
   renderLoading = () => (
-    <div className="Profile2">
+    <div className="Profile2" testid="loader">
       <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </div>
   )
@@ -69,7 +70,7 @@ class GetProfile extends Component {
     const {data} = this.state
     return (
       <div className="Profile">
-        <img src={data.profileImageUrl} alt={data.name} />
+        <img src={data.profileImageUrl} alt="profile" />
         <h1 className="profile-head">{data.name}</h1>
         <p className="profile-para">{data.shortBio}</p>
       </div>
@@ -78,7 +79,7 @@ class GetProfile extends Component {
 
   renderFailedView = () => (
     <div className="Profile2">
-      <button type="button" className="Nav-btn" onClick={this.getProfile()}>
+      <button type="button" className="Nav-btn" onClick={this.getProfile}>
         Retry
       </button>
     </div>
