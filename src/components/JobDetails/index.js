@@ -47,7 +47,7 @@ class JobDetails extends Component {
     this.setState({Aid: id})
     const Url = `https://apis.ccbp.in/jobs/${id}`
     const options = {
-      header: {
+      headers: {
         Authorization: `Bearer ${Token}`,
       },
       method: 'GET',
